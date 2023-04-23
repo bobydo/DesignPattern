@@ -1,5 +1,31 @@
 # DesignPattern Using VS 2022 => lots of intellisense
 will implement common design patterns deeply and weekly
+
+Dependency injection if interface is initialized, throw exception
+public static class MyClassFactory
+{
+    public static MyClass CreateInstance(IProduct product)
+    {
+        if(product == null)
+        {
+            throw new ArgumentNullException(nameof(product));
+        }
+
+        return new MyClass(product);
+    }
+}
+
+public MyClass(IProduct product)
+{
+    if(product == null)
+        throw new ArgumentNullException(nameof(product));
+    
+    _product = product;
+}
+
+IProduct product = new Product();
+MyClass myClass = MyClassFactory.CreateInstance(product);
+
 ## Singleton from chatgpt explanation
 Why Lazy<T> is often considered better than using a lock statement for lazy initialization:
 Thread safety: Lazy<T> is designed to be thread-safe by default, meaning that you don't have to worry about implementing thread safety yourself. When multiple threads try to access the value of a Lazy<T> instance for the first time, the Lazy<T> class ensures that only one thread initializes the value, while the other threads wait for the initialization to complete.
