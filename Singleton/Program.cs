@@ -26,15 +26,15 @@ namespace ThreadSafeSingleton // Note: actual namespace depends on the project n
 
         static void Main(string[] args)
         {
-            Parallel.Invoke(
-                () => User(),
-                () => Admin()
-                );
-
             //Parallel.Invoke(
-            //    () => UserLazy(),
-            //    () => AdminLazy()
+            //    () => User(),
+            //    () => Admin()
             //    );
+
+            Parallel.Invoke(
+                () => UserLazy(),
+                () => AdminLazy()
+                );
 
             //Parallel.Invoke(
             //    () => UserConcurrent(),
